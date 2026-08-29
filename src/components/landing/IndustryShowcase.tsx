@@ -63,85 +63,28 @@ const industries: Industry[] = [
 
 function PhoneScreen({ item, active }: { item: Industry; active: boolean }) {
   return (
-    <div
-      className="absolute inset-0 transition-all duration-500 ease-out"
-      style={{
-        opacity: active ? 1 : 0,
-        transform: active ? "translateY(0) scale(1)" : "translateY(14px) scale(1.03)",
-      }}
-      aria-hidden={!active}
-    >
-      <div className="flex h-full flex-col bg-card">
-        <div className="flex items-center gap-2 px-3 pb-2 pt-7">
-          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-secondary text-[10px] font-bold text-secondary-foreground">
-            {item.initials}
-          </span>
-          <div className="text-right">
-            <p className="text-[11px] font-bold leading-tight">{item.brand}</p>
-            <p className="text-[9px] leading-tight text-muted-foreground">{item.format}</p>
-          </div>
-        </div>
-        <div className="relative flex-1 overflow-hidden">
-          <img
-            src={item.image}
-            alt={`${item.industry} — ${item.caption}`}
-            width={720}
-            height={1280}
-            loading="lazy"
-            className="h-full w-full object-cover"
-          />
-          <span className="absolute right-3 top-3 rounded-full bg-card/90 px-2.5 py-1 text-[10px] font-bold">
-            {item.badge}
-          </span>
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/85 to-transparent p-3 text-right">
-            <p className="text-[12px] font-bold leading-snug text-ink-foreground">{item.caption}</p>
-            <p className="mt-1 text-[9px] text-ink-foreground/70">נוצר אוטומטית · דרסו סושיאל</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export function IndustryShowcase() {
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const el = sectionRef.current;
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const total = rect.height - window.innerHeight;
-      if (total <= 0) return;
-      const progress = Math.min(Math.max(-rect.top / total, 0), 0.999);
-      setIndex(Math.floor(progress * industries.length));
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const current = (industries[index] ?? industries[0]) as Industry;
-
-  return (
-    <section id="showcase" ref={sectionRef} className="relative lg:h-[400vh]">
-      <div className="lg:sticky lg:top-0 lg:flex lg:h-screen lg:items-center">
-        <div className="mx-auto w-full max-w-6xl px-5 py-20 lg:py-10">
+    <section id="showcase" ref={sectionRef} className="relative h-[380vh] lg:h-[400vh]">
+      <div className="sticky top-0 flex min-h-screen items-center">
+        <div className="mx-auto w-full max-w-6xl px-5 py-10">
           <Reveal className="text-center">
             <MonoLabel>ככה זה נראה</MonoLabel>
             <h2 className="mx-auto mt-5 max-w-3xl text-3xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-4xl">
-              תוכן ממותג לכל תחום — לא תבנית גנרית.
+              זה נראה כאילו אתה עשית את זה. רק בלי שעשית כלום.
             </h2>
           </Reveal>
 
-          {/* Desktop: pinned phone that swaps feeds */}
-          <div className="mt-8 hidden items-center justify-center gap-16 lg:flex">
-            <div className="w-80 text-right">
+          <div className="mt-8 flex flex-col items-center gap-8 lg:mt-10 lg:flex-row lg:justify-center lg:gap-16">
+            <div className="w-full text-center lg:w-80 lg:text-right">
               <p className="label-mono">{`/0${index + 1}`}</p>
-              <h3 className="mt-3 text-3xl font-extrabold tracking-tight">{current.industry}</h3>
-              <p className="mt-3 text-lg leading-relaxed text-muted-foreground">{current.side}</p>
-              <div className="mt-8 flex gap-2">
+              <div key={current.industry} style={{ animation: "swap-in 420ms cubic-bezier(0.22,0.61,0.36,1) both" }}>
+                <h3 className="mt-2 text-2xl font-extrabold tracking-tight lg:mt-3 lg:text-3xl">
+                  {current.industry}
+                </h3>
+                <p className="mt-2 text-base leading-relaxed text-muted-foreground lg:mt-3 lg:text-lg">
+                  {current.side}
+                </p>
+              </div>
+              <div className="mt-5 flex justify-center gap-2 lg:mt-8 lg:justify-start">
                 {industries.map((item, i) => (
                   <span
                     key={item.brand}
@@ -155,27 +98,11 @@ export function IndustryShowcase() {
                 {index + 1}/{industries.length}
               </p>
             </div>
-            <PhoneFrame className="w-[240px] sm:w-[240px]">
+            <PhoneFrame className="w-[230px] sm:w-[240px]">
               {industries.map((item, i) => (
                 <PhoneScreen key={item.brand} item={item} active={i === index} />
               ))}
             </PhoneFrame>
-          </div>
-
-          {/* Mobile: vertical stack revealed on scroll */}
-          <div className="mt-10 flex flex-col gap-10 lg:hidden">
-            {industries.map((item, i) => (
-              <Reveal key={item.brand} variant="pop" delay={i * 60} className="text-right">
-                <p className="label-mono">{`/0${i + 1}`}</p>
-                <h3 className="mt-2 text-2xl font-extrabold tracking-tight">{item.industry}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.side}</p>
-                <div className="mt-5 flex justify-center">
-                  <PhoneFrame className="w-[230px]">
-                    <PhoneScreen item={item} active />
-                  </PhoneFrame>
-                </div>
-              </Reveal>
-            ))}
           </div>
         </div>
       </div>
