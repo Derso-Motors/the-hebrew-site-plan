@@ -53,7 +53,7 @@ const faq = [
 
 export function Testimonials() {
   return (
-    <section className="mx-auto max-w-6xl px-5 py-24 sm:py-32">
+    <section id="testimonials" className="mx-auto max-w-6xl px-5 py-24 sm:py-32 scroll-mt-20">
       <Reveal className="text-right">
         <MonoLabel>לקוחות מספרים</MonoLabel>
         <h2 className="mt-5 text-3xl font-extrabold leading-tight tracking-tight sm:text-5xl">
