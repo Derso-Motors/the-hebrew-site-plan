@@ -1,4 +1,5 @@
 import { AlertTriangle } from "lucide-react";
+import { MonoLabel } from "./MonoLabel";
 import { Reveal } from "./Reveal";
 
 const notes = [
@@ -22,7 +23,7 @@ export function PainSection() {
   return (
     <section className="mx-auto max-w-6xl px-5 py-24 sm:py-36">
       <Reveal className="text-center">
-        <span className="label-mono">/הבעיה</span>
+        <MonoLabel>הבעיה</MonoLabel>
         <h2 className="mx-auto mt-6 max-w-3xl text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-6xl">
           העסק שלך מעולה.
           <br />

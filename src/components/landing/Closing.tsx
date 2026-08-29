@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Star, Plus, Minus } from "lucide-react";
+import { MonoLabel } from "./MonoLabel";
 import { Reveal } from "./Reveal";
 
 const testimonials = [
@@ -54,7 +55,7 @@ export function Testimonials() {
   return (
     <section className="mx-auto max-w-6xl px-5 py-24 sm:py-32">
       <Reveal className="text-right">
-        <span className="label-mono">/לקוחות מספרים</span>
+        <MonoLabel>לקוחות מספרים</MonoLabel>
         <h2 className="mt-5 text-3xl font-extrabold leading-tight tracking-tight sm:text-5xl">
           עסקים שכבר הפסיקו לשלם אלפים.
         </h2>
@@ -87,7 +88,7 @@ export function Faq() {
   return (
     <section id="faq" className="mx-auto max-w-3xl px-5 py-24 sm:py-32">
       <Reveal className="text-right">
-        <span className="label-mono">/שאלות נפוצות</span>
+        <MonoLabel>שאלות נפוצות</MonoLabel>
       </Reveal>
       <div className="mt-10 space-y-3">
         {faq.map((item, i) => (

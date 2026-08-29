@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { MonoLabel } from "./MonoLabel";
 import { Reveal } from "./Reveal";
 import { PhoneFrame } from "./PhoneFrame";
 import feedInsurance from "@/assets/feed-insurance.jpg";
@@ -128,7 +129,7 @@ export function IndustryShowcase() {
       <div className="lg:sticky lg:top-0 lg:flex lg:h-screen lg:items-center">
         <div className="mx-auto w-full max-w-6xl px-5 py-20 lg:py-10">
           <Reveal className="text-center">
-            <span className="label-mono">/ככה זה נראה</span>
+            <MonoLabel>ככה זה נראה</MonoLabel>
             <h2 className="mx-auto mt-5 max-w-3xl text-3xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl lg:text-4xl">
               תוכן ממותג לכל תחום — לא תבנית גנרית.
             </h2>

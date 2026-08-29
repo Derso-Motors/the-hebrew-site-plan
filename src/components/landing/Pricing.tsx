@@ -1,4 +1,5 @@
 import { Check, ArrowLeft } from "lucide-react";
+import { MonoLabel } from "./MonoLabel";
 import { Reveal } from "./Reveal";
 
 const plans = [
@@ -60,7 +61,7 @@ export function Pricing() {
   return (
     <section id="pricing" className="mx-auto max-w-6xl px-5 py-24 sm:py-32">
       <Reveal className="text-center">
-        <span className="label-mono">/מחירים</span>
+        <MonoLabel>מחירים</MonoLabel>
         <h2 className="mx-auto mt-5 max-w-3xl text-3xl font-extrabold leading-tight tracking-tight sm:text-5xl">
           עולה פחות מיום אחד של איש סושיאל.
         </h2>

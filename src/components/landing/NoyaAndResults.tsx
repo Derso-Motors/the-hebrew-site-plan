@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { MonoLabel } from "./MonoLabel";
 import { Reveal, useInView } from "./Reveal";
 
 const chat = [
@@ -22,7 +23,7 @@ export function NoyaSection() {
     <section className="mx-auto max-w-6xl px-5 py-24 sm:py-32">
       <div className="grid items-center gap-14 lg:grid-cols-2">
         <Reveal className="order-1 text-right">
-          <span className="label-mono">/נויה</span>
+          <MonoLabel>נויה</MonoLabel>
           <h2 className="mt-5 text-3xl font-extrabold leading-tight tracking-tight sm:text-5xl">
             והלקוחות שכותבים בלילה? נויה כבר ענתה.
           </h2>

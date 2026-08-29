@@ -9,6 +9,7 @@ import {
   MessageCircle,
   Globe,
 } from "lucide-react";
+import { MonoLabel } from "./MonoLabel";
 import { Reveal } from "./Reveal";
 
 const steps = [
@@ -69,7 +70,7 @@ export function HowItWorks() {
   return (
     <section id="how" className="mx-auto max-w-5xl px-5 py-24 sm:py-32">
       <Reveal>
-        <span className="label-mono">/איך זה עובד</span>
+        <MonoLabel>איך זה עובד</MonoLabel>
       </Reveal>
       <div className="mt-12 space-y-16 sm:space-y-24">
         {steps.map(({ num, Icon, title, text }, i) => (
@@ -102,7 +103,7 @@ export function FeatureGrid() {
   return (
     <section className="mx-auto max-w-6xl px-5 py-24 sm:py-32">
       <Reveal className="text-right">
-        <span className="label-mono">/מה מקבלים</span>
+        <MonoLabel>מה מקבלים</MonoLabel>
         <h2 className="mt-5 text-3xl font-extrabold leading-tight tracking-tight sm:text-5xl">
           מעטפת שיווק מלאה. לא עוד כלי.
         </h2>
