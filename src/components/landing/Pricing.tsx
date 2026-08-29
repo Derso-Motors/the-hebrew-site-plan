@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Check, ArrowLeft } from "lucide-react";
 import { MonoLabel } from "./MonoLabel";
 import { Reveal } from "./Reveal";
+import { UpsellDialog } from "./UpsellDialog";
 
 const plans = [
   {
@@ -57,7 +59,34 @@ const plans = [
   },
 ];
 
+const UPSELL_KEY = "derso_upsell_seen";
+
 export function Pricing() {
+  const [upsellOpen, setUpsellOpen] = useState(false);
+
+  const handlePlanClick = (planName: string) => (e: React.MouseEvent) => {
+    if (planName === "הכול כלול") return;
+    let seen = false;
+    try {
+      seen = localStorage.getItem(UPSELL_KEY) === "1";
+    } catch {
+      seen = false;
+    }
+    if (seen) return;
+    e.preventDefault();
+    try {
+      localStorage.setItem(UPSELL_KEY, "1");
+    } catch {
+      /* ignore */
+    }
+    setUpsellOpen(true);
+  };
+
+  const continueToCheckout = () => {
+    setUpsellOpen(false);
+    window.location.hash = "signup";
+  };
+
   return (
     <section id="pricing" className="mx-auto max-w-6xl px-5 py-24 sm:py-32">
       <Reveal className="text-center">
@@ -118,6 +147,7 @@ export function Pricing() {
             )}
             <a
               href="#signup"
+              onClick={handlePlanClick(plan.name)}
               className={`mt-6 ${plan.dark ? "pill-white" : "pill-ink"} w-full text-sm`}
             >
               {plan.cta}
@@ -134,6 +164,12 @@ export function Pricing() {
           התחילו חינם
         </a>
       </Reveal>
+
+      <UpsellDialog
+        open={upsellOpen}
+        onClose={() => setUpsellOpen(false)}
+        onContinue={continueToCheckout}
+      />
     </section>
   );
 }

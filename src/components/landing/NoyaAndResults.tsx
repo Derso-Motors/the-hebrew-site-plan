@@ -77,7 +77,7 @@ export function NoyaSection() {
 }
 
 const stats = [
-  { value: "פי 12", text: "יותר תוכן בפרימיום מול חבילת הבסיס", count: 12, prefix: "פי " },
+  { value: "150", text: "פוסטים בחודש. נסה לעשות את זה לבד.", count: 150 },
   { value: "4 רשתות", text: "בכל חבילה, מהשקל הראשון", count: 4, suffix: " רשתות" },
   { value: "06:30", text: "השעה שבה התוכן שלך כבר מתוזמן" },
   { value: "24/7", text: "מענה ללקוחות עם נויה" },
@@ -99,7 +99,7 @@ function Counter({ stat }: { stat: (typeof stats)[number] }) {
     return () => window.clearInterval(id);
   }, [inView, stat.count]);
 
-  const display = stat.count ? `${stat.prefix ?? ""}${n}${stat.suffix ?? ""}` : stat.value;
+  const display = stat.count ? `${n}${stat.suffix ?? ""}` : stat.value;
 
   return (
     <div ref={ref} className="card-soft p-7 text-center">
