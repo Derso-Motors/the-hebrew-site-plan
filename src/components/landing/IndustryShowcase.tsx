@@ -162,16 +162,19 @@ export function IndustryShowcase() {
             </PhoneFrame>
           </div>
 
-          {/* Mobile: swipe carousel */}
-          <div className="-mx-5 mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 lg:hidden">
-            {industries.map((item) => (
-              <div key={item.brand} className="w-[260px] shrink-0 snap-center">
-                <PhoneFrame className="w-[260px]">
-                  <PhoneScreen item={item} active />
-                </PhoneFrame>
-                <p className="mt-4 text-right text-base font-bold">{item.industry}</p>
-                <p className="mt-1 text-right text-sm text-muted-foreground">{item.side}</p>
-              </div>
+          {/* Mobile: vertical stack revealed on scroll */}
+          <div className="mt-10 flex flex-col gap-10 lg:hidden">
+            {industries.map((item, i) => (
+              <Reveal key={item.brand} variant="pop" delay={i * 60} className="text-right">
+                <p className="label-mono">{`/0${i + 1}`}</p>
+                <h3 className="mt-2 text-2xl font-extrabold tracking-tight">{item.industry}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.side}</p>
+                <div className="mt-5 flex justify-center">
+                  <PhoneFrame className="w-[230px]">
+                    <PhoneScreen item={item} active />
+                  </PhoneFrame>
+                </div>
+              </Reveal>
             ))}
           </div>
         </div>
