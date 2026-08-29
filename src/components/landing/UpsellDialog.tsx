@@ -91,7 +91,7 @@ export function UpsellDialog({
           ))}
         </div>
 
-        <div className="mt-6 rounded-[14px] bg-accent-soft p-5">
+        <div className="mt-6 rounded-[14px] bg-accent p-5">
           <div className="flex items-start justify-between gap-4">
             <div className="text-right">
               <p className="text-sm font-bold">נויה</p>
