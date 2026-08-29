@@ -99,7 +99,7 @@ function Counter({ stat }: { stat: (typeof stats)[number] }) {
     return () => window.clearInterval(id);
   }, [inView, stat.count]);
 
-  const display = stat.count ? `${stat.prefix ?? ""}${n}${stat.suffix ?? ""}` : stat.value;
+  const display = stat.count ? `${n}${stat.suffix ?? ""}` : stat.value;
 
   return (
     <div ref={ref} className="card-soft p-7 text-center">
