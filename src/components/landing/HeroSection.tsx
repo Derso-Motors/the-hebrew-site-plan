@@ -4,7 +4,7 @@ import { PhoneFrame } from "./PhoneFrame";
 import reelHero from "@/assets/reel-hero.jpg";
 
 const navLinks = [
-  { label: "תוצאות", href: "#results" },
+  { label: "תוצאות", href: "#testimonials" },
   { label: "איך זה עובד", href: "#how" },
   { label: "מחירים", href: "#pricing" },
   { label: "שאלות", href: "#faq" },
