@@ -1,24 +1,55 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ScrollProgress } from "@/components/landing/ScrollProgress";
+import { HeroSection } from "@/components/landing/HeroSection";
+import { PainSection, FlipSection } from "@/components/landing/PainSection";
+import { IndustryShowcase } from "@/components/landing/IndustryShowcase";
+import { HowItWorks, FeatureGrid } from "@/components/landing/HowAndFeatures";
+import { NoyaSection, ResultsStrip } from "@/components/landing/NoyaAndResults";
+import { Pricing } from "@/components/landing/Pricing";
+import {
+  Testimonials,
+  Faq,
+  FinalCta,
+  SiteFooter,
+  MobileCtaBar,
+} from "@/components/landing/Closing";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const title = "DERSO Social Studio — עובד סושיאל דיגיטלי לעסק שלך";
+const description =
+  "פוסטים, קרוסלות וסרטונים ממותגים בעברית שמתפרסמים אוטומטית באינסטגרם, פייסבוק, טיקטוק ויוטיוב. מ-249 ₪ בחודש.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main className="min-h-screen bg-background">
+      <ScrollProgress />
+      <HeroSection />
+      <PainSection />
+      <FlipSection />
+      <IndustryShowcase />
+      <HowItWorks />
+      <FeatureGrid />
+      <NoyaSection />
+      <ResultsStrip />
+      <Pricing />
+      <Testimonials />
+      <Faq />
+      <FinalCta />
+      <SiteFooter />
+      <MobileCtaBar />
+    </main>
   );
 }
